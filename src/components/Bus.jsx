@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "./../images/bus-top.png";
+import PropTypes from "prop-types";
 
 const Bus = props => {
   const { bus } = props;
@@ -10,6 +11,10 @@ const Bus = props => {
       <img src={Image} width="100" alt="" />
     </div>
   );
+};
+
+Bus.propTypes = {
+  bus: PropTypes.object.isRequired
 };
 
 export default Bus;

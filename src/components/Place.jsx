@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Place = props => {
   const { data: bus, onChangePlaceAttribute, onPlaceBus } = props;
@@ -77,6 +78,12 @@ const Place = props => {
       </div>
     </div>
   );
+};
+
+Place.propTypes = {
+  data: PropTypes.object.isRequired,
+  onChangePlaceAttribute: PropTypes.func.isRequired,
+  onPlaceBus: PropTypes.func.isRequired
 };
 
 export default Place;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Control = props => {
   const { data: bus, onMove, onRotate, onReport } = props;
@@ -43,6 +44,13 @@ const Control = props => {
       </div>
     </div>
   );
+};
+
+Control.propTypes = {
+  data: PropTypes.object.isRequired,
+  onMove: PropTypes.func.isRequired,
+  onRotate: PropTypes.func.isRequired,
+  onReport: PropTypes.func.isRequired
 };
 
 export default Control;

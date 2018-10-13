@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Report = props => {
   const { status } = props;
@@ -9,6 +10,10 @@ const Report = props => {
       <strong>{status.face}</strong>
     </div>
   );
+};
+
+Report.propTypes = {
+  status: PropTypes.object.isRequired
 };
 
 export default Report;

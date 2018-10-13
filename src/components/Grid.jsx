@@ -1,6 +1,6 @@
 import React from "react";
 
-const Grid = props => {
+const Grid = () => {
   return <div className="grid" />;
 };
 
