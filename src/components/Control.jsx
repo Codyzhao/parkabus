@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Control = props => {
-  const { data: bus, onMove, onRotate, onReport } = props;
+  const { placed, onMove, onRotate, onReport } = props;
   return (
     <div className="bus-control">
       <div className="container-fluid">
@@ -11,32 +11,38 @@ const Control = props => {
           <button
             type="button"
             className="btn btn-secondary"
-            disabled={!bus.placed}
-            onClick={e => onMove(e)}
+            id="move"
+            disabled={!placed}
+            onClick={() => onMove()}
           >
             Move
           </button>
           <button
             type="button"
             className="btn btn-secondary"
-            disabled={!bus.placed}
-            onClick={e => onRotate(e, "left")}
+            id="rotate-left"
+            name="left"
+            disabled={!placed}
+            onClick={onRotate}
           >
             Left
           </button>
           <button
             type="button"
             className="btn btn-secondary"
-            disabled={!bus.placed}
-            onClick={e => onRotate(e, "right")}
+            id="rotate-right"
+            name="right"
+            disabled={!placed}
+            onClick={onRotate}
           >
             Right
           </button>
           <button
             type="button"
             className="btn btn-primary"
-            disabled={!bus.placed}
-            onClick={e => onReport(e)}
+            id="report"
+            disabled={!placed}
+            onClick={() => onReport()}
           >
             Report
           </button>
@@ -47,10 +53,10 @@ const Control = props => {
 };
 
 Control.propTypes = {
-  data: PropTypes.object.isRequired,
-  onMove: PropTypes.func.isRequired,
-  onRotate: PropTypes.func.isRequired,
-  onReport: PropTypes.func.isRequired
+  placed: PropTypes.bool,
+  onMove: PropTypes.func,
+  onRotate: PropTypes.func,
+  onReport: PropTypes.func
 };
 
 export default Control;

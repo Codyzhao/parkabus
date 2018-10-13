@@ -36,7 +36,7 @@ class Park extends Component {
 
   handlePlaceAttribute = ({ currentTarget: select }) => {
     const bus = { ...this.state.bus };
-    bus[select.name] = select.value;
+    bus[select.name] = parseInt(select.value);
     bus.placed = false;
     this.setState({
       bus: bus,
@@ -63,8 +63,7 @@ class Park extends Component {
     });
   };
 
-  handleMove = e => {
-    e.preventDefault();
+  handleMove = () => {
     const { bus } = this.state;
     switch (bus.face) {
       case "north":
@@ -137,12 +136,12 @@ class Park extends Component {
     }
   };
 
-  handleRotate = (e, direction) => {
-    e.preventDefault();
+  handleRotate = e => {
     const directions = config.directions;
+    const { bus } = this.state;
     let newDireciton = "";
-    let currentIndex = directions.indexOf(this.state.bus.face);
-    if (direction === "right") {
+    let currentIndex = directions.indexOf(bus.face);
+    if (e.target.name === "right") {
       if (directions[currentIndex + 1]) {
         newDireciton = directions[currentIndex + 1];
       } else {
@@ -156,17 +155,16 @@ class Park extends Component {
       }
     }
 
-    const bus = { ...this.state.bus };
-    bus.face = newDireciton;
+    const newBus = { ...bus };
+    newBus.face = newDireciton;
     this.setState({
-      bus: bus,
+      bus: newBus,
       error: "",
       showReport: false
     });
   };
 
-  handleReport = e => {
-    e.preventDefault();
+  handleReport = () => {
     this.setState({
       showReport: true,
       error: ""
@@ -208,7 +206,7 @@ class Park extends Component {
           onPlaceBus={this.handlePlaceBus}
         />
         <Control
-          data={bus}
+          placed={bus.placed}
           onMove={this.handleMove}
           onReport={this.handleReport}
           onRotate={this.handleRotate}
